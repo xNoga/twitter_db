@@ -1,9 +1,10 @@
 FROM golang:jessie
 
+RUN go get github.com/gin-gonic/gin
+RUN go get gopkg.in/mgo.v2
+
 WORKDIR /go/src/app
-COPY . .
 
-RUN go get -d -v ./...
-RUN go install -v ./...
+ADD src src
 
-CMD ["app"]
+CMD [ "go", "run", "src/main.go" ]

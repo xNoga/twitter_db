@@ -27,6 +27,7 @@ var db *mgo.Session
 func main() {
 	var err error
 	db, err = mgo.Dial("mongodb://tester:test123@138.68.69.47:27017/social_net")
+	// db, err = mgo.Dial("mongodb://tester:test123@172.17.0.3:27017/social_net")
 	check(err)
 	defer db.Close()
 
@@ -116,7 +117,6 @@ func getMostNegative(c *gin.Context) {
 			"$group": bson.M{
 				"_id":      bson.M{"user": "$user"},
 				"mentions": bson.M{"$sum": 1},
-				"text":     bson.M{"$push": "$text"},
 			},
 		},
 		{
@@ -145,7 +145,6 @@ func getMostPositive(c *gin.Context) {
 			"$group": bson.M{
 				"_id":      bson.M{"user": "$user"},
 				"mentions": bson.M{"$sum": 1},
-				"text":     bson.M{"$push": "$text"},
 			},
 		},
 		{
