@@ -1,4 +1,5 @@
 # twitter_db
+The database is running in a docker container on my DigitalOcean server. The queries are really slow!
 
 ## Installation
 
